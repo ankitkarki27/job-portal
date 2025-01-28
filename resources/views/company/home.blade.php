@@ -274,9 +274,9 @@
             </div>
         </div>
     
-        <script>
+        {{-- <script>
             // Initialize Feather Icons
             feather.replace();
-        </script>
+        </script> --}}
     </body>
     </html>
