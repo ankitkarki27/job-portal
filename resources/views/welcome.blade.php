@@ -18,7 +18,7 @@ body {
 
 <body class="bg-white">
 
-@include('partials.navbar')
+@include('partials.welcome-navbar')
 
     <!-- Hero Section -->
     <section id="home" class="bg-white text-black pt-20">
@@ -52,7 +52,7 @@ body {
     </section>
 
     <!-- Footer -->
-    @include('partials.footer')
+    {{-- @include('partials.footer') --}}
 
 <!-- JavaScript to handle the menu toggle -->
     <script>

@@ -1,37 +1,73 @@
+<html>
+    <head>
+    </head>
+</head>
+<body>
+    
+
 <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
             <a href="/" class="flex items-center">
                 <img src="/images/image.png" alt="Logo" class="h-10">
             </a>
-            
+
             <!-- Desktop Menu -->
             <div class="hidden md:flex items-center space-x-6">
                 @auth
                     @if(auth()->user()->isApplicant())
                         <div class="flex space-x-6">
-                            <a href="{{ route('applicant.dashboard') }}" class="text-gray-900 hover:text-blue-500 font-semibold">Dashboard</a>
-                            <a href="{{ route('applicant.profile') }}" class="text-gray-900 hover:text-blue-500 font-semibold">My Profile</a>
-                            <a href="{{ route('jobs.index') }}" class="text-gray-900 hover:text-blue-500 font-semibold">Find Jobs</a>
-                            <a href="{{ route('applications.index') }}" class="text-gray-900 hover:text-blue-500 font-semibold">My Applications</a>
-                            <a href="{{ route('saved-jobs.index') }}" class="text-gray-900 hover:text-blue-500 font-semibold">Saved Jobs</a>
-                        </div>
+                            <a href="{{ route('applicant.home') }}" class="text-gray-900 hover:text-blue-500 font-semibold">Dashboard</a>
+                            <a href="" class="text-gray-900 hover:text-blue-500 font-semibold">My Profile</a>
+                            <a href="" class="text-gray-900 hover:text-blue-500 font-semibold">Find Jobs</a>
+                            <a href="" class="text-gray-900 hover:text-blue-500 font-semibold">My Applications</a>
+                            <a href="" class="text-gray-900 hover:text-blue-500 font-semibold">Saved Jobs</a>
+
+                            <!-- User Dropdown -->
+                            <div class="relative">
+                                <button id="applicant-dropdown-button" class="text-gray-900 hover:text-blue-500 font-semibold flex items-center space-x-2">
+                                    <span>{{ auth()->user()->name }}</span>
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                            
+                                <!-- Dropdown Content -->
+                                <div id="applicant-dropdown-menu" class="hidden absolute right-0 mt-2 w-48 bg-white border border-gray-300 shadow-lg rounded-lg py-2">
+                                    <a href="" class="block px-4 py-2 text-gray-900 hover:bg-gray-100">View Profile</a>
+                                    <a href="" class="block px-4 py-2 text-gray-900 hover:bg-gray-100">My Applications</a>
+                                    <form method="POST" action="{{ route('logout') }}" class="block">
+                                        @csrf
+                                        <button type="submit" class="w-full text-left px-4 py-2 text-gray-900 hover:bg-gray-100">Logout</button>
+                                    </form>
+                                </div>
+                            </div>
                     @else
                         <div class="flex space-x-6">
-                            <a href="{{ route('company.dashboard') }}" class="text-gray-900 hover:text-blue-500 font-semibold">Dashboard</a>
-                            <a href="{{ route('jobs.create') }}" class="text-gray-900 hover:text-blue-500 font-semibold">Post a Job</a>
-                            <a href="{{ route('company.jobs') }}" class="text-gray-900 hover:text-blue-500 font-semibold">Manage Jobs</a>
-                            <a href="{{ route('applicants.index') }}" class="text-gray-900 hover:text-blue-500 font-semibold">Applicants</a>
-                            <a href="{{ route('company.profile') }}" class="text-gray-900 hover:text-blue-500 font-semibold">Company Profile</a>
-                        </div>
+                            <a href="{{ route('company.home') }}" class="text-gray-900 hover:text-blue-500 font-semibold">Dashboard</a>
+                            <a href="" class="text-gray-900 hover:text-blue-500 font-semibold">Post a Job</a>
+                            <a href="" class="text-gray-900 hover:text-blue-500 font-semibold">Manage Jobs</a>
+                            <a href="" class="text-gray-900 hover:text-blue-500 font-semibold">Applicants</a>
+                            <a href="" class="text-gray-900 hover:text-blue-500 font-semibold">Company Profile</a>
+
+                            <!-- Company User Dropdown -->
+                            <div class="relative">
+                                <button id="company-dropdown-button" class="text-gray-900 hover:text-blue-500 font-semibold flex items-center space-x-2">
+                                    <span>{{ auth()->user()->name }}</span>
+                                    <img src="/images/company-logo.png" alt="Company Logo" class="w-6 h-6 rounded-full">
+                                </button>
+                            
+                                <!-- Dropdown Content -->
+                                <div id="company-dropdown-menu" class="hidden absolute right-0 mt-2 w-48 bg-white border border-gray-300 shadow-lg rounded-lg py-2">
+                                    <a href="" class="block px-4 py-2 text-gray-900 hover:bg-gray-100">View Profile</a>
+                                    <a href="" class="block px-4 py-2 text-gray-900 hover:bg-gray-100">Manage Jobs</a>
+                                    <form method="POST" action="{{ route('logout') }}" class="block">
+                                        @csrf
+                                        <button type="submit" class="w-full text-left px-4 py-2 text-gray-900 hover:bg-gray-100">Logout</button>
+                                    </form>
+                                </div>
+                            </div>
                     @endif
-                    
-                    <div class="flex items-center space-x-6 ml-6">
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button type="submit" class="text-gray-900 hover:text-blue-500 font-semibold">Logout</button>
-                        </form>
-                    </div>
                 @else
                     <a href="{{ route('login') }}" class="text-gray-900 hover:text-blue-500 font-semibold">Login</a>
                     <a href="{{ route('register.applicant') }}" class="bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-900">Applicant</a>
@@ -54,22 +90,21 @@
             @auth
                 @if(auth()->user()->isApplicant())
                     <div class="space-y-4 px-2 pt-2">
-                        <a href="{{ route('applicant.dashboard') }}" class="block text-gray-900 hover:text-blue-500 font-semibold">Dashboard</a>
-                        <a href="{{ route('applicant.profile') }}" class="block text-gray-900 hover:text-blue-500 font-semibold">My Profile</a>
-                        <a href="{{ route('jobs.index') }}" class="block text-gray-900 hover:text-blue-500 font-semibold">Find Jobs</a>
-                        <a href="{{ route('applications.index') }}" class="block text-gray-900 hover:text-blue-500 font-semibold">My Applications</a>
-                        <a href="{{ route('saved-jobs.index') }}" class="block text-gray-900 hover:text-blue-500 font-semibold">Saved Jobs</a>
+                        <a href="{{ route('applicant.home') }}" class="block text-gray-900 hover:text-blue-500 font-semibold">Dashboard</a>
+                        <a href="" class="block text-gray-900 hover:text-blue-500 font-semibold">My Profile</a>
+                        <a href="" class="block text-gray-900 hover:text-blue-500 font-semibold">Find Jobs</a>
+                        <a href="" class="block text-gray-900 hover:text-blue-500 font-semibold">My Applications</a>
+                        <a href="" class="block text-gray-900 hover:text-blue-500 font-semibold">Saved Jobs</a>
                     </div>
                 @else
                     <div class="space-y-4 px-2 pt-2">
-                        <a href="{{ route('company.dashboard') }}" class="block text-gray-900 hover:text-blue-500 font-semibold">Dashboard</a>
-                        <a href="{{ route('jobs.create') }}" class="block text-gray-900 hover:text-blue-500 font-semibold">Post a Job</a>
-                        <a href="{{ route('company.jobs') }}" class="block text-gray-900 hover:text-blue-500 font-semibold">Manage Jobs</a>
-                        <a href="{{ route('applicants.index') }}" class="block text-gray-900 hover:text-blue-500 font-semibold">Applicants</a>
-                        <a href="{{ route('company.profile') }}" class="block text-gray-900 hover:text-blue-500 font-semibold">Company Profile</a>
+                        <a href="{{ route('company.home') }}" class="block text-gray-900 hover:text-blue-500 font-semibold">Dashboard</a>
+                        <a href="" class="block text-gray-900 hover:text-blue-500 font-semibold">Post a Job</a>
+                        <a href="" class="block text-gray-900 hover:text-blue-500 font-semibold">Manage Jobs</a>
+                        <a href="" class="block text-gray-900 hover:text-blue-500 font-semibold">Applicants</a>
+                        <a href="" class="block text-gray-900 hover:text-blue-500 font-semibold">Company Profile</a>
                     </div>
                 @endif
-                
                 <div class="mt-4 border-t border-gray-200 pt-4 px-2">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
@@ -79,8 +114,6 @@
             @else
                 <div class="space-y-4 px-2 pt-2">
                     <a href="{{ route('login') }}" class="block text-gray-900 hover:text-blue-500 font-semibold">Login</a>
-                    <a href="{{ route('register.applicant') }}" class="block bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-900">Register as Applicant</a>
-                    <a href="{{ route('register.company') }}" class="block bg-white text-black border border-black px-4 py-2 rounded-lg hover:bg-gray-300 hover:text-black">Register as Company</a>
                 </div>
             @endauth
         </div>
@@ -88,26 +121,25 @@
 </nav>
 
 <script>
-    // Mobile menu toggle
-    document.getElementById('mobile-menu-button').addEventListener('click', function() {
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenu.classList.toggle('hidden');
-    });
-
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(event) {
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuButton = document.getElementById('mobile-menu-button');
-        
-        if (!mobileMenu.contains(event.target) && !menuButton.contains(event.target)) {
-            mobileMenu.classList.add('hidden');
+    document.addEventListener("DOMContentLoaded", function () {
+        function toggleDropdown(buttonId, menuId) {
+            const button = document.getElementById(buttonId);
+            const menu = document.getElementById(menuId);
+    
+            button.addEventListener("click", function (event) {
+                event.stopPropagation(); 
+                menu.classList.toggle("hidden");
+            });
+    
+            document.addEventListener("click", function (event) {
+                if (!button.contains(event.target) && !menu.contains(event.target)) {
+                    menu.classList.add("hidden");
+                }
+            });
         }
+    
+        toggleDropdown("applicant-dropdown-button", "applicant-dropdown-menu");
+        toggleDropdown("company-dropdown-button", "company-dropdown-menu");
     });
-
-    // Close mobile menu on window resize
-    window.addEventListener('resize', function() {
-        if (window.innerWidth >= 768) { // Tailwind's md breakpoint
-            document.getElementById('mobile-menu').classList.add('hidden');
-        }
-    });
-</script>
+    </script>
+    </body></html>

@@ -9,6 +9,6 @@ class CompanyController extends Controller
 {
     public function index()
     {
-        return view('company.home'); // Example view
+        return view('company.home');
     }
 }

@@ -1,282 +1,273 @@
-{{-- this is a company landing page of a job portal website --}}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Hire Top Talent - JobConnect for Employers</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <style>
+            @keyframes gradient {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+            }
+    
+            .gradient-bg {
+                background: linear-gradient(-45deg, #212122, #001230, #60a5fa);
+                background-size: 400% 400%;
+                animation: gradient 10s ease infinite;
+            }
+    
+            .feature-card:hover .feature-icon {
+                transform: rotateY(180deg);
+            }
+    
+            .hover-scale {
+                transition: transform 0.3s ease;
+            }
+    
+            .hover-scale:hover {
+                transform: translateY(-5px);
+            }
+    
+            .testimonial-card:hover blockquote {
+                transform: scale(1.02);
+            }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hire Top Talent - JobConnect for Employers</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
+            body {
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
-    </style>
-</head>
-
-<body class="bg-white">
-    @include('partials.navbar')
+        </style>
+    </head>
+    
+    <body class="bg-gray-50">
+        @include('partials.navbar')
+    
         <!-- Hero Section -->
-        <div class="bg-white">
-            <div class="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
-                <div class="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
-                    <div class="mx-auto max-w-xl text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
-                        <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Find & Hire the Best Talent</h2>
-                        <p class="mt-6 text-lg leading-8 text-gray-300">Connect with over 1 million qualified candidates and build your dream team faster.</p>
-                        <div class="mt-10 flex items-center gap-x-6 justify-center lg:justify-start">
-                            <a href="#" class="rounded-lg bg-white px-6 py-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 transition-colors">
-                                Post a Job
-                            </a>
-                            <a href="#" class="text-sm font-semibold leading-6 text-white flex items-center gap-2">
-                                View Plans <i data-feather="arrow-right" class="w-4 h-4"></i>
-                            </a>
+        <section class="bg-gray-900 text-white">
+            <div class="max-w-7xl mx-auto px-4 py-24 sm:py-32 lg:py-40">
+                <div class="text-center">
+                    <h1 class="text-4xl sm:text-6xl font-bold max-w-3xl mx-auto leading-tight">
+                        Build Your Dream Team with 
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-amber-500">Top Talent</span>
+                    </h1>
+                    <p class="mt-6 text-xl text-gray-100 max-w-2xl mx-auto">
+                        Access a network of over 1 million qualified professionals and streamline your hiring process
+                    </p>
+                    <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="{{ route('job_listings.index') }}" class="inline-flex items-center justify-center px-8 py-4 bg-white text-indigo-600 font-semibold rounded-lg shadow-lg hover:bg-gray-50 transition-all duration-300 hover:shadow-xl">
+                            Post a Job – Free Trial
+                        </a>
+                        <a href="#" class="inline-flex items-center justify-center px-8 py-4 border border-white/30 bg-transparent text-white font-semibold rounded-lg hover:bg-white/10 transition-all duration-300">
+                            Schedule Demo →
+                        </a>
+                    </div>
+                    <div class="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-8 max-w-4xl mx-auto">
+                        <div class="text-center p-4 backdrop-blur-sm bg-white/5 rounded-xl">
+                            <div class="text-3xl font-bold">1M+</div>
+                            <div class="text-sm mt-1 opacity-80">Active Candidates</div>
+                        </div>
+                        <div class="text-center p-4 backdrop-blur-sm bg-white/5 rounded-xl">
+                            <div class="text-3xl font-bold">24h</div>
+                            <div class="text-sm mt-1 opacity-80">Avg. Time to Hire</div>
+                        </div>
+                        <div class="text-center p-4 backdrop-blur-sm bg-white/5 rounded-xl">
+                            <div class="text-3xl font-bold">92%</div>
+                            <div class="text-sm mt-1 opacity-80">Hiring Success Rate</div>
+                        </div>
+                        <div class="text-center p-4 backdrop-blur-sm bg-white/5 rounded-xl">
+                            <div class="text-3xl font-bold">50K+</div>
+                            <div class="text-sm mt-1 opacity-80">Companies Hiring</div>
                         </div>
                     </div>
-                    
                 </div>
             </div>
-        </div>
+        </section>
     
-        <!-- Stats Section -->
+        <section class="bg-white py-16">
         <div class="bg-white py-24 sm:py-32">
-            <div class="mx-auto max-w-7xl px-6 lg:px-8">
-                <div class="mx-auto max-w-2xl lg:max-w-none">
-                    <div class="text-center">
-                        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Trusted by leading companies worldwide</h2>
-                    </div>
-                    <dl class="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
-                        <div class="flex flex-col items-center gap-y-4">
-                            <dt class="text-4xl font-bold tracking-tight text-gray-900">1M+</dt>
-                            <dd class="text-base leading-7 text-gray-600">Active candidates</dd>
-                        </div>
-                        <div class="flex flex-col items-center gap-y-4">
-                            <dt class="text-4xl font-bold tracking-tight text-gray-900">24hr</dt>
-                            <dd class="text-base leading-7 text-gray-600">Average time to hire</dd>
-                        </div>
-                        <div class="flex flex-col items-center gap-y-4">
-                            <dt class="text-4xl font-bold tracking-tight text-gray-900">50k+</dt>
-                            <dd class="text-base leading-7 text-gray-600">Companies hiring</dd>
-                        </div>
-                        <div class="flex flex-col items-center gap-y-4">
-                            <dt class="text-4xl font-bold tracking-tight text-gray-900">92%</dt>
-                            <dd class="text-base leading-7 text-gray-600">Success rate</dd>
-                        </div>
-                    </dl>
-                </div>
-            </div>
-        </div>
-    
-        <!-- Features Section -->
-        <div class="bg-gray-50 py-24 sm:py-32">
-            <div class="mx-auto max-w-7xl px-6 lg:px-8">
-                <div class="mx-auto max-w-2xl lg:text-center">
-                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Everything you need to hire better</h2>
-                    <p class="mt-6 text-lg leading-8 text-gray-600">Streamline your hiring process with our comprehensive suite of tools and features.</p>
-                </div>
-                <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-                    <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
-                        <div class="flex flex-col">
-                            <dt class="flex items-center gap-x-3 text-xl font-semibold leading-7 text-gray-900">
-                                <div class="bg-gray-900 rounded-lg p-2">
-                                    <i data-feather="users" class="w-5 h-5 text-white"></i>
-                                </div>
-                                Smart Candidate Matching
-                            </dt>
-                            <dd class="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
-                                <p class="flex-auto">Our AI-powered system matches your job posts with the most qualified candidates automatically.</p>
-                            </dd>
-                        </div>
-                        <div class="flex flex-col">
-                            <dt class="flex items-center gap-x-3 text-xl font-semibold leading-7 text-gray-900">
-                                <div class="bg-gray-900 rounded-lg p-2">
-                                    <i data-feather="clock" class="w-5 h-5 text-white"></i>
-                                </div>
-                                Efficient Hiring Pipeline
-                            </dt>
-                            <dd class="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
-                                <p class="flex-auto">Manage your entire hiring process in one place with our intuitive ATS system.</p>
-                            </dd>
-                        </div>
-                        <div class="flex flex-col">
-                            <dt class="flex items-center gap-x-3 text-xl font-semibold leading-7 text-gray-900">
-                                <div class="bg-gray-900 rounded-lg p-2">
-                                    <i data-feather="bar-chart-2" class="w-5 h-5 text-white"></i>
-                                </div>
-                                Analytics & Insights
-                            </dt>
-                            <dd class="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
-                                <p class="flex-auto">Get detailed analytics and insights to optimize your recruitment strategy.</p>
-                            </dd>
-                        </div>
-                    </dl>
-                </div>
-            </div>
-        </div>
-    
-        <div class="relative isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
-            <div class="absolute inset-x-0 -top-3 -z-10 transform-gpu overflow-hidden px-36 blur-3xl" aria-hidden="true">
-              <div class="mx-auto aspect-1155/678 w-[72.1875rem] bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
-            </div>
-            <div class="mx-auto max-w-4xl text-center">
-              <h2 class="text-base/7 font-semibold text-indigo-600">Pricing</h2>
-              <p class="mt-2 text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-6xl">Choose the right plan for you</p>
-            </div>
-            <p class="mx-auto mt-6 max-w-2xl text-center text-lg font-medium text-pretty text-gray-600 sm:text-xl/8">Choose an affordable plan that’s packed with the best features for engaging your audience, creating customer loyalty, and driving sales.</p>
-            <div class="mx-auto mt-16 grid max-w-lg grid-cols-1 items-center gap-y-6 sm:mt-20 sm:gap-y-0 lg:max-w-4xl lg:grid-cols-2">
-              <div class="rounded-3xl rounded-t-3xl bg-white/60 p-8 ring-1 ring-gray-900/10 sm:mx-8 sm:rounded-b-none sm:p-10 lg:mx-0 lg:rounded-tr-none lg:rounded-bl-3xl">
-                <h3 id="tier-hobby" class="text-base/7 font-semibold text-indigo-600">Hobby</h3>
-                <p class="mt-4 flex items-baseline gap-x-2">
-                  <span class="text-5xl font-semibold tracking-tight text-gray-900">$29</span>
-                  <span class="text-base text-gray-500">/month</span>
-                </p>
-                <p class="mt-6 text-base/7 text-gray-600">The perfect plan if you&#039;re just getting started with our product.</p>
-                <ul role="list" class="mt-8 space-y-3 text-sm/6 text-gray-600 sm:mt-10">
-                  <li class="flex gap-x-3">
-                    <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
-                    </svg>
-                    25 products
-                  </li>
-                  <li class="flex gap-x-3">
-                    <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
-                    </svg>
-                    Up to 10,000 subscribers
-                  </li>
-                  <li class="flex gap-x-3">
-                    <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
-                    </svg>
-                    Advanced analytics
-                  </li>
-                  <li class="flex gap-x-3">
-                    <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
-                    </svg>
-                    24-hour support response time
-                  </li>
-                </ul>
-                <a href="#" aria-describedby="tier-hobby" class="mt-8 block rounded-md px-3.5 py-2.5 text-center text-sm font-semibold text-indigo-600 ring-1 ring-indigo-200 ring-inset hover:ring-indigo-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:mt-10">Get started today</a>
-              </div>
-              <div class="relative rounded-3xl bg-gray-900 p-8 ring-1 shadow-2xl ring-gray-900/10 sm:p-10">
-                <h3 id="tier-enterprise" class="text-base/7 font-semibold text-indigo-400">Enterprise</h3>
-                <p class="mt-4 flex items-baseline gap-x-2">
-                  <span class="text-5xl font-semibold tracking-tight text-white">$99</span>
-                  <span class="text-base text-gray-400">/month</span>
-                </p>
-                <p class="mt-6 text-base/7 text-gray-300">Dedicated support and infrastructure for your company.</p>
-                <ul role="list" class="mt-8 space-y-3 text-sm/6 text-gray-300 sm:mt-10">
-                  <li class="flex gap-x-3">
-                    <svg class="h-6 w-5 flex-none text-indigo-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
-                    </svg>
-                    Unlimited products
-                  </li>
-                  <li class="flex gap-x-3">
-                    <svg class="h-6 w-5 flex-none text-indigo-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
-                    </svg>
-                    Unlimited subscribers
-                  </li>
-                  <li class="flex gap-x-3">
-                    <svg class="h-6 w-5 flex-none text-indigo-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
-                    </svg>
-                    Advanced analytics
-                  </li>
-                  <li class="flex gap-x-3">
-                    <svg class="h-6 w-5 flex-none text-indigo-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
-                    </svg>
-                    Dedicated support representative
-                  </li>
-                  <li class="flex gap-x-3">
-                    <svg class="h-6 w-5 flex-none text-indigo-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
-                    </svg>
-                    Marketing automations
-                  </li>
-                  <li class="flex gap-x-3">
-                    <svg class="h-6 w-5 flex-none text-indigo-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
-                    </svg>
-                    Custom integrations
-                  </li>
-                </ul>
-                <a href="#" aria-describedby="tier-enterprise" class="mt-8 block rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 sm:mt-10">Get started today</a>
-              </div>
+          <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <h2 class="text-center text-lg/8 font-semibold text-gray-900">Trusted by the world’s most innovative teams</h2>
+            <div class="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+              <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1" src="https://tailwindui.com/plus/img/logos/158x48/transistor-logo-gray-900.svg" alt="Transistor" width="158" height="48">
+              <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1" src="https://tailwindui.com/plus/img/logos/158x48/reform-logo-gray-900.svg" alt="Reform" width="158" height="48">
+              <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1" src="https://tailwindui.com/plus/img/logos/158x48/tuple-logo-gray-900.svg" alt="Tuple" width="158" height="48">
+              <img class="col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1" src="https://tailwindui.com/plus/img/logos/158x48/savvycal-logo-gray-900.svg" alt="SavvyCal" width="158" height="48">
+              <img class="col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1" src="https://tailwindui.com/plus/img/logos/158x48/statamic-logo-gray-900.svg" alt="Statamic" width="158" height="48">
             </div>
           </div>
-          
-        <!-- Pricing Section -->
-        <div class="bg-white py-24 sm:py-32">
-            <div class="mx-auto max-w-7xl px-6 lg:px-8">
-                <div class="mx-auto max-w-2xl sm:text-center">
-                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Simple, transparent pricing</h2>
-                    <p class="mt-6 text-lg leading-8 text-gray-600">Choose the perfect plan for your hiring needs</p>
+        </div>
+        </section>
+    
+        <!-- Features Grid -->
+        <section class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Smart Hiring Solutions</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Advanced tools to simplify your recruitment process</p>
                 </div>
-                <div class="mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
-                    <div class="p-8 sm:p-10 lg:flex-auto">
-                        <h3 class="text-2xl font-bold tracking-tight text-gray-900">Professional</h3>
-                        <p class="mt-6 text-base leading-7 text-gray-600">Perfect for growing companies with active hiring needs.</p>
-                        <div class="mt-10 flex items-center gap-x-4">
-                            <h4 class="flex-none text-sm font-semibold leading-6 text-gray-900">What's included</h4>
-                            <div class="h-px flex-auto bg-gray-100"></div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="feature-card bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300">
+                        <div class="feature-icon w-16 h-16 bg-indigo-100 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-500">
+                            <i data-feather="search" class="w-8 h-8 text-indigo-600"></i>
                         </div>
-                        <ul role="list" class="mt-8 grid grid-cols-1 gap-4 text-sm leading-6 text-gray-600 sm:grid-cols-2 sm:gap-6">
-                            <li class="flex gap-x-3">
-                                <i data-feather="check" class="h-6 w-5 flex-none text-gray-900"></i>
-                                Unlimited job postings
-                            </li>
-                            <li class="flex gap-x-3">
-                                <i data-feather="check" class="h-6 w-5 flex-none text-gray-900"></i>
-                                Advanced candidate matching
-                            </li>
-                            <li class="flex gap-x-3">
-                                <i data-feather="check" class="h-6 w-5 flex-none text-gray-900"></i>
-                                Branded company profile
-                            </li>
-                            <li class="flex gap-x-3">
-                                <i data-feather="check" class="h-6 w-5 flex-none text-gray-900"></i>
-                                Basic analytics
-                            </li>
-                        </ul>
+                        <h3 class="text-xl font-semibold mb-4">AI-Powered Matching</h3>
+                        <p class="text-gray-600">Our intelligent algorithms match job requirements with ideal candidates</p>
                     </div>
-                    <div class="p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
-                        <div class="rounded-2xl bg-gray-50 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
-                            <div class="mx-auto max-w-xs px-8">
-                                <p class="text-base font-semibold text-gray-600">Monthly subscription</p>
-                                <p class="mt-6 flex items-baseline justify-center gap-x-2">
-                                    <span class="text-5xl font-bold tracking-tight text-gray-900">$299</span>
-                                    <span class="text-sm font-semibold leading-6 tracking-wide text-gray-600">/month</span>
-                                </p>
-                                <a href="#" class="mt-10 block w-full rounded-md bg-gray-900 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900">Get started</a>
+                    
+                    <div class="feature-card bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300">
+                        <div class="feature-icon w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-500">
+                            <i data-feather="briefcase" class="w-8 h-8 text-green-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-4">Collaborative Hiring</h3>
+                        <p class="text-gray-600">Team-based evaluation tools and shared candidate profiles</p>
+                    </div>
+                    
+                    <div class="feature-card bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300">
+                        <div class="feature-icon w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-500">
+                            <i data-feather="bar-chart" class="w-8 h-8 text-blue-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-4">Analytics Dashboard</h3>
+                        <p class="text-gray-600">Real-time metrics and hiring pipeline visualization</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Pricing Section -->
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Flexible Pricing Plans</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Choose the plan that fits your hiring needs</p>
+                </div>
+    
+                <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <!-- Starter Plan -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover-scale">
+                        <div class="mb-8">
+                            <h3 class="text-xl font-semibold mb-2">Basic</h3>
+                            <p class="text-gray-600">For small teams and individual hiring</p>
+                            <div class="mt-6">
+                                <span class="text-4xl font-bold">$0</span>
+                                <span class="text-gray-500">/month</span>
                             </div>
                         </div>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center">
+                                <i data-feather="check" class="w-5 h-5 text-green-500 mr-2"></i>
+                                50 Job Postings
+                            </li>
+                            <li class="flex items-center">
+                                <i data-feather="check" class="w-5 h-5 text-green-500 mr-2"></i>
+                                Basic Analytics
+                            </li>
+                            <li class="flex items-center">
+                                <i data-feather="check" class="w-5 h-5 text-green-500 mr-2"></i>
+                                Email Support
+                            </li>
+                        </ul>
+                        <button class="w-full py-3 bg-indigo-100 text-indigo-600 rounded-lg font-semibold hover:bg-indigo-200 transition-colors">
+                            Get Started
+                        </button>
+                    </div>
+    
+                    <!-- Professional Plan (Featured) -->
+                    <div class="bg-gradient-to-b from-indigo-600 to-indigo-700 p-8 rounded-2xl text-white hover-scale transform hover:scale-105">
+                        <div class="mb-8">
+                            <div class="flex justify-between items-center">
+                                <h3 class="text-xl font-semibold">Professional</h3>
+                                <span class="bg-white/20 px-3 py-1 rounded-full text-sm">Most Popular</span>
+                            </div>
+                            <p class="mt-2 opacity-90">Growing teams with regular hiring needs</p>
+                            <div class="mt-6">
+                                <span class="text-4xl font-bold">$20</span>
+                                <span class="opacity-80">/month</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center">
+                                <i data-feather="check" class="w-5 h-5 text-green-300 mr-2"></i>
+                                Unlimited Job Postings
+                            </li>
+                            <li class="flex items-center">
+                                <i data-feather="check" class="w-5 h-5 text-green-300 mr-2"></i>
+                                Advanced Analytics
+                            </li>
+                            <li class="flex items-center">
+                                <i data-feather="check" class="w-5 h-5 text-green-300 mr-2"></i>
+                                Priority Support
+                            </li>
+                            <li class="flex items-center">
+                                <i data-feather="check" class="w-5 h-5 text-green-300 mr-2"></i>
+                                Team Collaboration
+                            </li>
+                        </ul>
+                        <button class="w-full py-3 bg-white text-indigo-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                            Start Free Trial
+                        </button>
+                    </div>
+    
+                    <!-- Enterprise Plan -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover-scale">
+                        <div class="mb-8">
+                            <h3 class="text-xl font-semibold mb-2">Enterprise</h3>
+                            <p class="text-gray-600">Large organizations with custom needs</p>
+                            <div class="mt-6">
+                                <span class="text-4xl font-bold">Custom</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center">
+                                <i data-feather="check" class="w-5 h-5 text-green-500 mr-2"></i>
+                                Everything in Professional
+                            </li>
+                            <li class="flex items-center">
+                                <i data-feather="check" class="w-5 h-5 text-green-500 mr-2"></i>
+                                Dedicated Account Manager
+                            </li>
+                            <li class="flex items-center">
+                                <i data-feather="check" class="w-5 h-5 text-green-500 mr-2"></i>
+                                Custom Workflows
+                            </li>
+                            <li class="flex items-center">
+                                <i data-feather="check" class="w-5 h-5 text-green-500 mr-2"></i>
+                                SLA & Premium Support
+                            </li>
+                        </ul>
+                        <button class="w-full py-3 bg-indigo-100 text-indigo-600 rounded-lg font-semibold hover:bg-indigo-200 transition-colors">
+                            Contact Sales
+                        </button>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     
         <!-- CTA Section -->
-        <div class="bg-white">
-            <div class="mx-auto max-w-7xl px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
-                <div class="relative isolate overflow-hidden bg-gray-900 px-6 py-24 text-center shadow-2xl sm:rounded-3xl sm:px-16">
-                    <h2 class="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-white sm:text-4xl">Start hiring top talent today</h2>
-                    <p class="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-300">Join thousands of companies who've found their perfect hires through our platform.</p>
-                    <div class="mt-10 flex items-center justify-center gap-x-6">
-                        <a href="#" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Post Your First Job</a>
-                        <a href="#" class="text-sm font-semibold leading-6 text-white">Contact Sales <span aria-hidden="true">→</span></a>
+        <section class="bg-gray-900 text-white">
+            <div class="max-w-7xl mx-auto px-4 py-20 text-center">
+                <div class="max-w-3xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-6">Start Hiring Smarter Today</h2>
+                    <p class="text-gray-300 mb-8">Join thousands of companies who found their perfect hires through our platform</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="#" class="px-8 py-4 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-colors shadow-lg hover:shadow-xl">
+                            Post Your First Job
+                        </a>
+                        <a href="#" class="px-8 py-4 border border-white/20 text-white rounded-lg font-semibold hover:bg-white/5 transition-colors">
+                            Request Demo
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     
         <script>
-            // Initialize Feather Icons
             feather.replace();
         </script>
+    
+          @include('partials.footer')
     </body>
     </html>

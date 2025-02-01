@@ -40,6 +40,7 @@ class User extends Authenticatable
     public function isCompany()
     {
         return $this->role === self::ROLE_COMPANY;
+        
     }
 
     public function companies()
@@ -50,5 +51,9 @@ class User extends Authenticatable
     public function applicants()
     {
         return $this->hasOne(Applicant::class);
+    }
+    public function company()
+    {
+        return $this->hasOne(Company::class);
     }
 }

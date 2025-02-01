@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('applicants', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id'); // Foreign key for the `users` table
-            $table->string('resume')->nullable(); // Path to uploaded resume
+            $table->string('resume')->nullable(); 
             $table->text('skills')->nullable(); // Applicant's skills
             $table->string('education')->nullable(); // Education details
             $table->string('experience')->nullable(); // Work experience

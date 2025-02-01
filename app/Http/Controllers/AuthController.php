@@ -8,7 +8,10 @@ use App\Models\Applicant;
 use App\Models\Company;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Log;
+use Illuminate\Container\Attributes\Log;
 use App\Http\Middleware\RoleManager;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -29,23 +32,46 @@ class AuthController extends Controller
     // Handle registration for Applicant
     public function registerApplicant(Request $request)
     {
+        // \Log::info('Register Applicant method called');
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+            'resume' => 'required|file|mimes:pdf,doc,docx|max:10240',
+            'skills' => 'required|string',
+            'education' => 'required|string',
+            'experience' => 'required|string',
+            'address' => 'required|string',
+            'phone' => 'required|string|max:10',
         ]);
+    
+        $resumePath = null;
+        if ($request->hasFile('resume')) {
+            $resumePath = $request->file('resume')->store('resumes', 'public');
+        }
     
         $user = User::create([
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
-            'role' => User::ROLE_APPLICANT,
-            // 'role' => 3,
+            'role' => 2,
         ]);
     
-        Auth::login($user);
+        Applicant::create([
+            'user_id' => $user->id,
+            'skills' => $validatedData['skills'],
+            'education' => $validatedData['education'],
+            'experience' => $validatedData['experience'],
+            'address' => $validatedData['address'],
+            'phone' => $validatedData['phone'],
+            'resume' => $resumePath,
+        ]);
     
-        return redirect()->route('applicant.home');
+          // Log the user in
+          Auth::login($user);
+    
+        //   return redirect()->intended(route('applicant.home'))->with('success', 'Applicant registered successfully!');
+          return redirect()->route('applicant.home')->with('success', 'applicant registered successfully!');
     }
     
 
@@ -55,48 +81,55 @@ class AuthController extends Controller
         return view('auth.register_company');
     }
 
-    // Handle registration for Company
     public function registerCompany(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255', // User's name
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'company_name' => 'required|string|max:255',
-            'company_address' => 'nullable|string|max:255',
-            'company_phone' => 'nullable|string|max:20',
-            'company_website' => 'nullable|url',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            
+            // company details
+            'com_name' => 'required|string|max:255',  
+            'com_email' => 'required|string|email|max:255|unique:companies',
+            'com_phone' => 'required|string|max:10',
+            'com_address' => 'nullable|string|max:255',
+            'com_website' => 'nullable|url',
+            'logo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'com_description' => 'nullable|string',
         ]);
-           // Handle logo upload if it exists
-            $logoPath = null;
-            if ($request->hasFile('logo')) {
-                $logoPath = $request->file('logo')->store('logos', 'public'); // Store logo in public/logos
-            }
-
+    
+        // Handle logo upload
+        $logoPath = null;
+        if ($request->hasFile('logo')) {
+            $logoPath = $request->file('logo')->store('logos', 'public'); 
+        }
+    
+        // Create the User
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
-            'role' => 3, // Company role is 3
+            'role' => 3,    
         ]);
-
+    
         // Create the Company
-            Company::create([
-                'user_id' => $user->id,
-                'name' => $validated['company_name'],  // Add company name
-                'address' => $validated['company_address'],  // Add company address
-                'phone' => $validated['company_phone'],  // Add company phone number
-                'website' => $validated['company_website'],  // Add company website
-                'logo' => $logoPath,  
-            ]);
-
-        // Log the user in using the auth helper
-        Auth::login($user); 
-
-        return redirect()->route('company.home');
+        Company::create([
+            'user_id' => $user->id,
+            'com_name' => $validated['com_name'],
+            'com_email' => $validated['com_email'],  
+            'com_phone' => $validated['com_phone'],
+            'com_address' => $validated['com_address'] ?? null,
+            'com_website' => $validated['com_website'] ?? null,
+            'com_description' => $validated['com_description'] ?? null,
+            'logo' => $logoPath,  
+        ]);
+    
+        // Log the user in
+        Auth::login($user);
+    
+        return redirect()->route('company.home')->with('success', 'Company registered successfully!');
     }
-
+    
     // Show registration form for Admin
     public function showAdminRegisterForm()
     {
