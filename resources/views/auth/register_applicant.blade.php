@@ -25,9 +25,10 @@
             document.getElementById('step1').classList.remove('hidden');
         }
     </script>
-</head>
+</head> 
+ @include('partials.navbar')
 <body class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
+    <div class="max-w-2xl mx-auto bg-white overflow-hidden">
         <div class="px-8 py-10 text-center">
             <h2 class="text-3xl font-bold text-black">Create Your Account</h2>
             <p class="text-black">Join our platform to find your dream job</p>
