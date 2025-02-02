@@ -1,51 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Portal - Find Your Dream Job</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-    {{-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"> --}}
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
-    <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: white;
-        }
-    </style>
-</head>
+@extends('layouts.app')
 
-<body class="bg-white">
-    @include('partials.navbar')
+@section('title', 'Job Portal - Find Your Dream Job')
 
+@section('content')
     <!-- Hero Section -->
-    <div class="bg-white">
-        <div class="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
-            <div class="text-center">
-                <h1 class="text-4xl font-bold text-gray-900 mb-6">Find Your Dream Job Today</h1>
-                <p class="text-xl text-blue-800 mb-8">Connect with over 10,000+ employers and start your next career journey</p>
-                
-                <!-- Search Box -->
-                <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-4">
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <div class="flex-1">
-                            <input type="text" placeholder="Job title or keyword" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+
+<!-- Hero Section -->
+<div class="relative">
+    <!-- Background Pattern -->
+    <div class="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
+        <div class="text-center">
+            <!-- Main Content -->
+            <div class="space-y-6 mb-12">
+                <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight">
+                    Find Your <span class="text-blue-600">Dream Job</span> Today
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+                    Connect with over <span class="font-semibold text-blue-600">10,000+</span> employers and start your next career journey
+                </p>
+            </div>
+
+            <!-- Search Box -->
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-white rounded-xl shadow-2xl p-4 md:p-6 backdrop-blur-sm bg-opacity-80">
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <div class="flex-1 relative">
+                            <svg class="w-5 h-5 absolute left-3 top-3 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                            <input type="text" 
+                                placeholder="Job title or keyword" 
+                                class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
                         </div>
-                        <div class="flex-1">
-                            <input type="text" placeholder="Location" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+                        <div class="flex-1 relative">
+                            <svg class="w-5 h-5 absolute left-3 top-3 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                            <input type="text" 
+                                placeholder="Location" 
+                                class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
                         </div>
-                        <button class="bg-gray-900 text-white px-8 py-2 rounded-lg hover:bg-blue-700">Search</button>
+                        <button class="bg-gray-900 text-white px-8 py-3 rounded-lg hover:bg-gray-900 transform">
+                            Search Jobs
+                        </button>
                     </div>
+                </div>
+
+                <!-- Popular Searches -->
+                <div class="mt-6 flex flex-wrap justify-center gap-2 text-sm text-gray-900">
+                    <span class="font-medium">Popular:</span>
+                    <a href="#" class="hover:text-blue-600 transition-colors">Remote</a>
+                    <span class="text-gray-300">•</span>
+                    <a href="#" class="hover:text-blue-600 transition-colors">Full-time</a>
+                    <span class="text-gray-300">•</span>
+                    <a href="#" class="hover:text-blue-600 transition-colors">Technology</a>
+                    <span class="text-gray-300">•</span>
+                    <a href="#" class="hover:text-blue-600 transition-colors">Marketing</a>
                 </div>
             </div>
         </div>
     </div>
+</div>
    
     <!-- Featured Jobs Section -->
-    <div class="bg-gray-50">
+    <div class="bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <h2 class="text-3xl font-bold text-gray-900 mb-8">Featured Jobs</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -116,9 +135,7 @@
         </div>
     </div>
    
-    @include('partials.footer')
-
-    <script>
+        <script>
         // Initialize Feather Icons
         feather.replace();
         
@@ -130,5 +147,4 @@
             mobileMenu.classList.toggle('hidden');
         });
     </script>
-</body>
-</html>
+@endsection

@@ -9,9 +9,9 @@ use App\Models\Company;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 // use Illuminate\Support\Facades\Log;
-use Illuminate\Container\Attributes\Log;
+// use Illuminate\Container\Attributes\Log;
 use App\Http\Middleware\RoleManager;
-use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -23,25 +23,23 @@ class AuthController extends Controller
         $this->roleManager = $roleManager;
     }
 
-    // Show registration form for Applicant
     public function showApplicantRegisterForm()
     {
         return view('auth.register_applicant');
     }
 
-    // Handle registration for Applicant
     public function registerApplicant(Request $request)
     {
-        // \Log::info('Register Applicant method called');
-        $validatedData = $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+
             'resume' => 'required|file|mimes:pdf,doc,docx|max:10240',
-            'skills' => 'required|string',
-            'education' => 'required|string',
-            'experience' => 'required|string',
-            'address' => 'required|string',
+            'skills' => 'required|string|max:255', 
+            'education' => 'required|string|max:255', 
+            'experience' => 'required|string|max:255', 
+            'address' => 'required|string|max:255', 
             'phone' => 'required|string|max:10',
         ]);
     
@@ -51,26 +49,26 @@ class AuthController extends Controller
         }
     
         $user = User::create([
-            'name' => $validatedData['name'],
-            'email' => $validatedData['email'],
-            'password' => Hash::make($validatedData['password']),
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
             'role' => 2,
         ]);
     
         Applicant::create([
             'user_id' => $user->id,
-            'skills' => $validatedData['skills'],
-            'education' => $validatedData['education'],
-            'experience' => $validatedData['experience'],
-            'address' => $validatedData['address'],
-            'phone' => $validatedData['phone'],
             'resume' => $resumePath,
+            'skills' => $validated['skills'],
+            'education' => $validated['education'],
+            'experience' => $validated['experience'],
+            'address' => $validated['address'],
+            'phone' => $validated['phone'],
+            
         ]);
     
           // Log the user in
           Auth::login($user);
     
-        //   return redirect()->intended(route('applicant.home'))->with('success', 'Applicant registered successfully!');
           return redirect()->route('applicant.home')->with('success', 'applicant registered successfully!');
     }
     
@@ -84,10 +82,9 @@ class AuthController extends Controller
     public function registerCompany(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255', // User's name
+            'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            
             // company details
             'com_name' => 'required|string|max:255',  
             'com_email' => 'required|string|email|max:255|unique:companies',
@@ -98,21 +95,18 @@ class AuthController extends Controller
             'com_description' => 'nullable|string',
         ]);
     
-        // Handle logo upload
         $logoPath = null;
         if ($request->hasFile('logo')) {
             $logoPath = $request->file('logo')->store('logos', 'public'); 
         }
-    
-        // Create the User
+
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
             'role' => 3,    
         ]);
-    
-        // Create the Company
+
         Company::create([
             'user_id' => $user->id,
             'com_name' => $validated['com_name'],
@@ -149,10 +143,10 @@ class AuthController extends Controller
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
-            'role' => 1, // Admin role is 1
+            'role' => 1,
         ]);
 
-        // Log the user in using the auth helper
+        // Log the user
         Auth::login($user); 
 
         return redirect()->route('admin.home');
@@ -164,7 +158,6 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    // Handle login
     public function login(Request $request)
     {
         $credentials = $request->validate([

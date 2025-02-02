@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -11,12 +12,7 @@ class User extends Authenticatable
     const ROLE_COMPANY = 3;
 
     // Add the fillable property
-    protected $fillable = [
-        'name',         // Allow mass assignment for name
-        'email',        // Allow mass assignment for email
-        'password',     // Allow mass assignment for password
-        'role',         // Allow mass assignment for role (if using role-based authentication)
-    ];
+    protected $fillable = ['name', 'email', 'password', 'role'];
 
     /**
      * Check if the user is Admin.
@@ -55,5 +51,9 @@ class User extends Authenticatable
     public function company()
     {
         return $this->hasOne(Company::class);
+    }
+    public function applicant()
+    {
+        return $this->hasOne(Applicant::class);
     }
 }

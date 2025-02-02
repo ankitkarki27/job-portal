@@ -5,11 +5,12 @@
 <body>
     
 
-<nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+<nav class="bg-white fixed w-full top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
-            <a href="/" class="flex items-center">
-                <img src="/images/image.png" alt="Logo" class="h-10">
+            <a href="" class="flex items-center">
+                {{-- <img src="/images/image.png" alt="Logo" class="h-10"> --}}
+                <img src="{{ asset('images/image.png') }}" alt="Logo" class="h-10">
             </a>
 
             <!-- Desktop Menu -->
@@ -17,15 +18,15 @@
                 @auth
                     @if(auth()->user()->isApplicant())
                         <div class="flex space-x-6">
-                            <a href="{{ route('applicant.home') }}" class="text-gray-900 hover:text-blue-500 font-semibold">Dashboard</a>
-                            <a href="" class="text-gray-900 hover:text-blue-500 font-semibold">My Profile</a>
-                            <a href="" class="text-gray-900 hover:text-blue-500 font-semibold">Find Jobs</a>
-                            <a href="" class="text-gray-900 hover:text-blue-500 font-semibold">My Applications</a>
-                            <a href="" class="text-gray-900 hover:text-blue-500 font-semibold">Saved Jobs</a>
+                            <a href="{{ route('applicant.home') }}" class="text-gray-900 hover:text-blue-500 font-sm">Home</a>
+                            <a href="" class="text-gray-900 hover:text-blue-500 font-sm">Find Jobs</a>
+                            <a href="" class="text-gray-900 hover:text-blue-500 font-sm">Companies</a>
+                           
 
                             <!-- User Dropdown -->
                             <div class="relative">
-                                <button id="applicant-dropdown-button" class="text-gray-900 hover:text-blue-500 font-semibold flex items-center space-x-2">
+                                <button id="applicant-dropdown-button" class="bg-gray-900 text-white hover:bg-gray-800 hover:text-white font-semibold flex items-center space-x-2 px-4 py-2 rounded-lg transition duration-300 ease-in-out shadow-md">
+
                                     <span>{{ auth()->user()->name }}</span>
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -34,8 +35,11 @@
                             
                                 <!-- Dropdown Content -->
                                 <div id="applicant-dropdown-menu" class="hidden absolute right-0 mt-2 w-48 bg-white border border-gray-300 shadow-lg rounded-lg py-2">
-                                    <a href="" class="block px-4 py-2 text-gray-900 hover:bg-gray-100">View Profile</a>
+                                    <a href="{{ route('profile.index') }}" class="block px-4 py-2 text-gray-900 hover:bg-gray-100">View Profile</a>
                                     <a href="" class="block px-4 py-2 text-gray-900 hover:bg-gray-100">My Applications</a>
+                                    <a href="" class="block px-4 py-2 text-gray-900 hover:bg-gray-100">Saved Jobs</a>
+                                    <a href="" class="block px-4 py-2 text-gray-900 hover:bg-gray-100">Settings</a>
+                                    <hr>
                                     <form method="POST" action="{{ route('logout') }}" class="block">
                                         @csrf
                                         <button type="submit" class="w-full text-left px-4 py-2 text-gray-900 hover:bg-gray-100">Logout</button>
@@ -44,23 +48,25 @@
                             </div>
                     @else
                         <div class="flex space-x-6">
-                            <a href="{{ route('company.home') }}" class="text-gray-900 hover:text-blue-500 font-semibold">Dashboard</a>
-                            <a href="" class="text-gray-900 hover:text-blue-500 font-semibold">Post a Job</a>
-                            <a href="" class="text-gray-900 hover:text-blue-500 font-semibold">Manage Jobs</a>
+                            <a href="{{ route('company.home') }}" class="text-gray-900 hover:text-blue-500 font-semibold">Home</a>
+                            <a href="{{ route('job_listings.index') }}" class="text-gray-900 hover:text-blue-500 font-semibold">Post a Job</a>
                             <a href="" class="text-gray-900 hover:text-blue-500 font-semibold">Applicants</a>
-                            <a href="" class="text-gray-900 hover:text-blue-500 font-semibold">Company Profile</a>
+
 
                             <!-- Company User Dropdown -->
                             <div class="relative">
                                 <button id="company-dropdown-button" class="text-gray-900 hover:text-blue-500 font-semibold flex items-center space-x-2">
-                                    <span>{{ auth()->user()->name }}</span>
-                                    <img src="/images/company-logo.png" alt="Company Logo" class="w-6 h-6 rounded-full">
-                                </button>
-                            
+                                    <!-- Display the company logo if available -->
+                                    <img src="{{ asset('storage/' . (auth()->user()->company->logo ?? 'default-logo.png')) }}" 
+                                         alt="Company Logo"
+                                         class="w-6 h-6 rounded-full">
+                                </button>                                                     
                                 <!-- Dropdown Content -->
                                 <div id="company-dropdown-menu" class="hidden absolute right-0 mt-2 w-48 bg-white border border-gray-300 shadow-lg rounded-lg py-2">
                                     <a href="" class="block px-4 py-2 text-gray-900 hover:bg-gray-100">View Profile</a>
                                     <a href="" class="block px-4 py-2 text-gray-900 hover:bg-gray-100">Manage Jobs</a>
+                                    <hr class="text-black">
+                                    <hr>
                                     <form method="POST" action="{{ route('logout') }}" class="block">
                                         @csrf
                                         <button type="submit" class="w-full text-left px-4 py-2 text-gray-900 hover:bg-gray-100">Logout</button>
@@ -121,25 +127,36 @@
 </nav>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        function toggleDropdown(buttonId, menuId) {
-            const button = document.getElementById(buttonId);
-            const menu = document.getElementById(menuId);
-    
-            button.addEventListener("click", function (event) {
-                event.stopPropagation(); 
-                menu.classList.toggle("hidden");
-            });
-    
-            document.addEventListener("click", function (event) {
-                if (!button.contains(event.target) && !menu.contains(event.target)) {
-                    menu.classList.add("hidden");
+document.addEventListener("DOMContentLoaded", function () {
+    function toggleDropdown(buttonId, menuId) {
+        const button = document.getElementById(buttonId);
+        const menu = document.getElementById(menuId);
+
+        if (!button || !menu) return; // Prevent errors if elements are missing
+
+        button.addEventListener("click", function (event) {
+            event.stopPropagation(); 
+            
+            // Close other dropdowns
+            document.querySelectorAll(".dropdown-menu").forEach(dropdown => {
+                if (dropdown !== menu) {
+                    dropdown.classList.add("hidden");
                 }
             });
-        }
-    
-        toggleDropdown("applicant-dropdown-button", "applicant-dropdown-menu");
-        toggleDropdown("company-dropdown-button", "company-dropdown-menu");
-    });
-    </script>
+
+            // Toggle current dropdown
+            menu.classList.toggle("hidden");
+        });
+
+        document.addEventListener("click", function (event) {
+            if (!button.contains(event.target) && !menu.contains(event.target)) {
+                menu.classList.add("hidden");
+            }
+        });
+    }
+
+    toggleDropdown("applicant-dropdown-button", "applicant-dropdown-menu");
+    toggleDropdown("company-dropdown-button", "company-dropdown-menu");
+});
+</script>
     </body></html>

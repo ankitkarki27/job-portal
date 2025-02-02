@@ -6,11 +6,12 @@
     <title>Two-Step Registration</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            /* background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%); */
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: white;
         }
     </style>
     <script>
@@ -32,9 +33,8 @@
             <p class="text-black">Join our platform to find your dream job</p>
         </div>
 
-        <form method="POST" action="{{ route('register.applicant') }}" class="p-8 space-y-8">
+        <form method="POST" action="{{ route('register.applicant') }}" class="p-8 space-y-8" enctype="multipart/form-data">
             @csrf
-
             <!-- Step 1: Personal Information -->
             <div id="step1">
                 <h3 class="text-xl font-semibold text-gray-900 mb-4">Personal Information</h3>
@@ -60,7 +60,7 @@
                         <input type="password" id="password_confirmation" name="password_confirmation" required class="w-full p-3 border rounded-lg">
                     </div>
                 </div>
-                <button type="button" onclick="nextStep()" class="mt-6 w-full p-3 bg-blue-600 text-white rounded-lg">Next</button>
+                <button type="button" onclick="nextStep()" class="mt-6 w-full p-3 bg-gray-900 text-white rounded-lg">Next</button>
             </div>
 
             <!-- Step 2: Professional Details -->
@@ -76,6 +76,10 @@
                         <input type="text" id="education" name="education" required class="w-full p-3 border rounded-lg">
                     </div>
                     <div>
+                        <label for="skills" class="block text-sm font-medium text-gray-700">Skills</label>
+                        <input type="text" id="skills" name="skills" required class="w-full p-3 border rounded-lg">
+                    </div>
+                    <div>
                         <label for="experience" class="block text-sm font-medium text-gray-700">Experience</label>
                         <input type="text" id="experience" name="experience" required class="w-full p-3 border rounded-lg">
                     </div>
@@ -86,7 +90,7 @@
                 </div>
                 <div class="mt-6 flex justify-between">
                     <button type="button" onclick="prevStep()" class="p-3 bg-gray-400 text-white rounded-lg">Back</button>
-                    <button type="submit" class="p-3 bg-green-600 text-white rounded-lg">Submit</button>
+                    <button type="submit" class="p-3 bg-gray-900 text-white rounded-lg">Submit</button>
                 </div>
             </div>
         </form>

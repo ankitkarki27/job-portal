@@ -28,11 +28,23 @@ Route::middleware('guest')->group(function () {
 
 // Authenticated User Routes
 Route::middleware(['auth'])->group(function () {
-    // Profile Routes
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    
+    // Resume Update Routes
+    Route::get('/profile/resume/edit', [ProfileController::class, 'editResume'])->name('profile.resume.edit');
+    Route::put('/profile/resume/update', [ProfileController::class, 'updateResume'])->name('profile.resume.update');
+    
+    // Logo Update Routes
+    Route::get('/profile/logo/edit', [ProfileController::class, 'editLogo'])->name('profile.logo.edit');
+    Route::put('/profile/logo/update', [ProfileController::class, 'updateLogo'])->name('profile.logo.update');
+    
+    Route::get('/profile/delete', [ProfileController::class, 'confirmDelete'])->name('profile.delete');
+    Route::delete('/profile/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
 
 // Admin Routes
 Route::middleware(['rolemanager:admin'])->group(function () {
@@ -43,6 +55,10 @@ Route::middleware(['rolemanager:admin'])->group(function () {
 Route::middleware(['rolemanager:applicant'])->group(function () {
     Route::get('/applicant/home', [ApplicantController::class, 'index'])->name('applicant.home');
 });
+
+
+
+
 
 // Company Routes
 Route::middleware(['rolemanager:company'])->group(function () {
@@ -69,11 +85,7 @@ Route::middleware(['rolemanager:applicant'])->group(function () {
 });
 
 // Applicant Profile Routes
-Route::middleware(['rolemanager:applicant'])->group(function () {
-    Route::get('/applicant/profile', [ApplicantProfileController::class, 'showProfile'])->name('applicant.profile.show');
-    Route::get('/applicant/profile/edit', [ApplicantProfileController::class, 'editProfile'])->name('applicant.profile.edit');
-    Route::post('/applicant/profile/update', [ApplicantProfileController::class, 'updateProfile'])->name('applicant.profile.update');
-});
+
 
 // Error Handling
 Route::fallback(function () {

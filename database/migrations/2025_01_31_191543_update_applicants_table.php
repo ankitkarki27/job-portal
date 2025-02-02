@@ -26,8 +26,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('applicants', function (Blueprint $table) {
-            $table->string('resume')->nullable()->change(); // Revert to nullable
-            $table->dropColumn('phone'); // Remove phone column
+            $table->string('resume')->nullable()->change();
+            $table->dropColumn('phone');
         });
     }
 };
