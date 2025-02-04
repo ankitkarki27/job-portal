@@ -19,6 +19,7 @@ class JobListing extends Model
     // Relationship with Company model
     public function company()
     {
-    return $this->belongsTo(Company::class);
+        return $this->belongsTo(Company::class);
+        return $this->belongsTo(Company::class, 'company_id');
     }
 }

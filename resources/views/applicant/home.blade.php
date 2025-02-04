@@ -66,29 +66,70 @@
     <!-- Featured Jobs Section -->
     <div class="bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <h2 class="text-3xl font-bold text-gray-900 mb-8">Featured Jobs</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Job Card -->
-                <div class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border border-gray-100">
-                    <div class="flex items-center justify-between mb-4">
-                        <img src="/api/placeholder/48/48" alt="Company logo" class="rounded">
-                        <span class="text-gray-600 font-medium bg-gray-100 px-3 py-1 rounded-full text-sm">Full Time</span>
+            <div class="mb-12 text-center">
+                <h2 class="text-4xl font-extrabold text-gray-900 mb-3">
+                    <span class="bg-clip-text text-gray-900">
+                        Featured Jobs
+                    </span>
+                </h2>
+                <p class="text-lg text-gray-500">Discover your next career opportunity</p>
+            </div>
+    
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                @foreach($jobs as $job)
+                    <!-- Job Card -->
+                    <div class="group bg-white rounded-xl p-6 hover:shadow-xl transition-all duration-300 ease-in-out border border-gray-200 hover:border-blue-100 relative overflow-hidden">
+                        <!-- Top Section -->
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex items-center space-x-4">
+                                @if($job->company && $job->company->logo)
+                                    <img src="{{ asset('storage/' . $job->company->logo) }}" 
+                                         class="w-16 h-16 rounded-xl border-2 border-white shadow-sm">
+                                @else
+                                    <div class="w-16 h-16 rounded-lg bg-blue-50 flex items-center justify-center">
+                                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                                        </svg>
+                                    </div>
+                                @endif
+                                <div>
+                                    <span class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">
+                                        {{ $job->job_type ?? 'Full-time' }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Content Section -->
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">{{ $job->job_title }}</h3>
+                        <p class="text-gray-600 font-medium mb-4">{{ $job->company->com_name ?? 'Company Confidential' }}</p>
+                        
+                        <div class="flex items-center text-gray-500 mb-4 space-x-3">
+                            <i data-feather="map-pin" class="w-5 h-5 text-blue-500"></i>
+                            <span>{{ $job->location }}</span>
+                        </div>
+    
+                        <!-- Bottom Section -->
+                        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-blue-600 font-bold text-lg">${{ number_format($job->salary) }}</span>
+                                <span class="text-gray-400 text-sm">/ year</span>
+                            </div>
+                           
+                            <a href="{{ route('job_listings.show', ['id' => $job->jobid]) }}" class="flex items-center px-4 py-2 bg-blue-50 text-blue-600 rounded-md hover:bg-blue-100 transition-colors">
+                                <span class="text-sm font-medium">View Details</span>
+                                <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
+                            </a>
+                            
+                        </div>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Senior Software Engineer</h3>
-                    <p class="text-gray-600 mb-4">TechCorp Solutions</p>
-                    <div class="flex items-center text-gray-500 mb-4">
-                        <i data-feather="map-pin" class="w-4 h-4 mr-2"></i>
-                        <span>San Francisco, CA</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-gray-700 font-medium">$120k - $150k</span>
-                        <button class="text-gray-900 hover:text-gray-700 font-medium">Apply Now</button>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
 
+
+{{-- update the tailwinf css design of this  Featured Jobs Section.design only the tailwind css,don't change the laravel code only change tailwind css part --}}
     <!-- Features Section -->
     <div class="bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">

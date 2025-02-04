@@ -20,7 +20,7 @@
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-center mb-8">
                 <h2 class="text-3xl font-bold text-gray-800 mb-4 md:mb-0">Your Job Listings</h2>
-                <a href="{{ route('job_listings.create') }}" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-300">
+                <a href="{{ route('job_listings.create') }}" class="inline-flex items-center px-6 py-3 bg-black text-white rounded-lg shadow-md hover:bg-gray-900 transition-colors duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                     </svg>
@@ -51,6 +51,7 @@
                 <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-gray-800 mb-2">{{ $job->job_title }}</h3>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">{{ $job->jobid }}</h3>
                         <p class="text-sm text-gray-500 mb-1">{{ $job->company->com_name }}</p>
                         <p class="text-sm text-gray-600 mb-4">{{ Str::limit($job->job_description, 100) }}</p>
                         

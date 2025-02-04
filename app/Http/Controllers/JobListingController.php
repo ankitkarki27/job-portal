@@ -120,4 +120,13 @@ class JobListingController extends Controller
         // Redirect back to the job listings page with success message
         return redirect()->route('job_listings.index')->with('success', 'Job listing deleted successfully!');
     }
+    public function show($id)
+{
+    // Retrieve the job by id, with the company relationship
+    $job = JobListing::with('company')->findOrFail($id);
+    // $job = JobListing::findOrFail($id);
+    // Return the 'show' view with the job data
+    return view('job_listings.show', compact('job'));
+}
+
 }

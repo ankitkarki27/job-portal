@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\RoleManager;
 // use Illuminate\Support\Facades\DB;
 
+
 class AuthController extends Controller
 {
 
@@ -95,10 +96,15 @@ class AuthController extends Controller
             'com_description' => 'nullable|string',
         ]);
     
+       // In the controller (where you save the logo)
         $logoPath = null;
         if ($request->hasFile('logo')) {
-            $logoPath = $request->file('logo')->store('logos', 'public'); 
+            $logoPath = $request->file('logo')->store('logos', 'public');
         }
+
+        // Then store the logoPath in the company's database column
+        // $companies->logoPath = $logoPath;
+        // $companies->save();
 
         $user = User::create([
             'name' => $validated['name'],
@@ -157,28 +163,46 @@ class AuthController extends Controller
     {
         return view('auth.login');
     }
-
+    
     public function login(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|string',
-        ]);
+{
+    $credentials = $request->validate([
+        'email'    => 'required|email',
+        'password' => 'required|string',
+    ]);
 
-        if (Auth::attempt($credentials)) {
-            $role = Auth::user()->role;
+    if (Auth::attempt($credentials)) {
+        $user = Auth::user(); // Get authenticated user
 
-            // Redirect based on role
-            switch ($role) {
-                case 1:
-                    return redirect()->route('admin.home');
-                case 2:
-                    return redirect()->route('applicant.home');
-                case 3:
-                    return redirect()->route('company.home');
-            }
+        // Redirect based on role
+        switch ($user->role) {
+            case 1:
+                return redirect()->route('admin.home');
+            case 2:
+                return redirect()->route('applicant.home');
+            case 3:
+                return redirect()->route('company.home');
+            default:
+                Auth::logout(); // Logout unknown users
+                return redirect('/login')->withErrors(['email' => 'Unauthorized access.']);
         }
-
-        return back()->withErrors(['email' => 'The provided credentials do not match our records.']);
     }
+
+    return back()->withErrors([
+        'email' => 'The provided credentials do not match our records.'
+    ])->withInput();
+}
+
+
+    
+
+// logout
+public function logout(Request $request)
+{
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect('/login')->with('success', 'Logged out successfully.');
+}
 }

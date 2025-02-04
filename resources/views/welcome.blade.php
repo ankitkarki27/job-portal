@@ -36,6 +36,7 @@
                     </p>
                     
                     <div class="mt-8 flex flex-wrap gap-4 justify-left md:justify-start">
+                        <a href="{{ route('login') }}" class="text-blue-500 hover:underline">Login</a>
                         <button class="bg-gray-900 hover:bg-gray-900 text-white font-semibold px-6 py-3 rounded-lg">
                            Find Jobs
                         </button>
