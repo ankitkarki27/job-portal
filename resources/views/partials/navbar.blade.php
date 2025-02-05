@@ -24,8 +24,8 @@
             @if(auth()->user()->isApplicant())
               <div class="flex items-center space-x-6">
                 <a href="{{ route('applicant.home') }}" class="text-gray-800 hover:text-blue-600 text-sm font-medium transition-colors duration-200">Home</a>
-                <a href="#" class="text-gray-800 hover:text-blue-600 text-sm font-medium transition-colors duration-200">Find Jobs</a>
-                <a href="#" class="text-gray-800 hover:text-blue-600 text-sm font-medium transition-colors duration-200">Companies</a>
+                <a href="{{ route('applicant.findjobs') }}" class="text-gray-800 hover:text-blue-600 text-sm font-medium transition-colors duration-200">Find Jobs</a>
+                <a href="{{ route('applicant.home') }}" class="text-gray-800 hover:text-blue-600 text-sm font-medium transition-colors duration-200">Companies</a>
 
                 <!-- Applicant User Dropdown -->
                 <div class="relative">

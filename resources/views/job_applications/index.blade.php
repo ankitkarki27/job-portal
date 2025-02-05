@@ -81,7 +81,7 @@
                                     
                                     @if ($application->status == 'pending')
                                     <a 
-                                    href="{{ route('job_applications.edit', $application->applications_id) }}"  
+                                    {{-- href="{{ route('job_applications.edit', $application->applications_id) }}"   --}}
                                            class="text-gray-400 hover:text-yellow-600 transition duration-150 ease-in-out"
                                            title="Edit">
                                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

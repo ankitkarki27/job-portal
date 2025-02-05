@@ -11,9 +11,27 @@
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
+        .status-open {
+            background-color: #DEF7EC;
+            color: #03543F;
+        }
+        
+        .status-closed {
+            background-color: #FEE2E2;
+            color: #991B1B;
+        }
+        .table-row-hover:hover {
+            background-color: #F9FAFB;
+        }
+        .action-button {
+            transition: all 0.2s;
+        }
+        .action-button:hover {
+            transform: translateY(-1px);
+        }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-white">
     @include('partials.navbar')
 
     <div class="container mx-auto px-4 py-28">
@@ -40,57 +58,51 @@
 
             @if($jobListings->isEmpty())
             <div class="bg-white shadow-md rounded-lg p-8 text-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                </svg>
                 <p class="text-xl text-gray-600">You have not posted any job listings yet.</p>
             </div>
             @else
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                @foreach($jobListings as $job)
-                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">{{ $job->job_title }}</h3>
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">{{ $job->jobid }}</h3>
-                        <p class="text-sm text-gray-500 mb-1">{{ $job->company->com_name }}</p>
-                        <p class="text-sm text-gray-600 mb-4">{{ Str::limit($job->job_description, 100) }}</p>
-                        
-                        <div class="grid grid-cols-2 gap-2 mb-4 text-sm text-gray-700">
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block mr-1 text-blue-500" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-                                </svg>
-                                {{ $job->location }}
-                            </div>
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block mr-1 text-green-500" viewBox="0 0 20 20" fill="currentColor">
-                                    <path d="M8.433 7.418c.155-.13.296-.272.423-.410.328-.348.732-.886 1.057-1.405C10.393 4.077 11 2.751 11 2v-.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v.5c0 .406.16.856.479 1.233a9.51 9.51 0 0 0 1.855 1.728c.212.152.382.429.382.714v1.57c0 .142-.037.286-.104.414L11.43 15.143a1.5 1.5 0 0 1-1.356.861H6.926a1.5 1.5 0 0 1-1.347-.863L2.104 7.714a.5.5 0 0 1 .093-.506l.637-.637a.5.5 0 0 1 .514-.125l2.78.982z" />
-                                </svg>
-                                ${{ number_format($job->salary, 2) }}
-                            </div>
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block mr-1 text-purple-500" viewBox="0 0 20 20" fill="currentColor">
-                                    <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
-                                </svg>
-                                {{ $job->experience_years }} years
-                            </div>
-                        </div>
-
-                        <div class="flex justify-between items-center border-t pt-4 mt-4">
-                            <a href="{{ route('job_listings.edit', $job->jobid) }}" class="text-blue-600 hover:text-blue-800 transition-colors font-semibold">
-                                Edit Listing
-                            </a>
-                            <form action="{{ route('job_listings.destroy', $job->jobid) }}" method="POST" class="inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="text-red-500 hover:text-red-700 transition-colors font-semibold">
-                                    Delete
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
+            <div class="overflow-x-auto bg-white rounded-xl shadow-lg">
+                <table class="min-w-full bg-white rounded-xl shadow-lg">
+                    <thead>
+                        <tr class="bg-gray-50 border-b border-gray-200">
+                            <th class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase">Job Title</th>
+                            <th class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase">View Applications</th>
+                            <th class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase">Salary</th>
+                            <th class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase">Exp(Years)</th>
+                            <th class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase">Deadline</th>
+                            <th class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                            <th class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($jobListings as $job)
+                        <tr class="border-b border-gray-200">
+                            <td class="py-3 px-4 text-sm font-semibold text-gray-900">{{ $job->job_title }} <br>
+                                {{ $job->company->com_name }}
+                            </td>
+                            <td class="py-3 px-4 text-sm text-gray-600">{{ $job->Application_id }}</td>
+                            <td class="py-3 px-4 text-sm text-gray-600">${{ number_format($job->salary, 2) }}</td>
+                            <td class="py-3 px-4 text-sm text-gray-600">{{ $job->experience_years }}</td>
+                            <td class="py-3 px-4 text-sm text-gray-600">{{ \Carbon\Carbon::parse($job->application_deadline)->format('M d, Y') }}</td>
+                            <td class="py-3 px-4 text-sm">
+                                <span class="px-3 py-1 rounded-full 
+                                    {{ \Carbon\Carbon::parse($job->application_deadline)->isPast() ? 'status-closed' : 'status-open' }}">
+                                    {{ \Carbon\Carbon::parse($job->application_deadline)->isPast() ? 'Closed' : 'Open' }}
+                                </span>
+                            </td>
+                            <td class="py-3 px-4 text-sm">
+                                <a href="{{ route('job_listings.edit', $job->jobid) }}" class="text-blue-600 hover:text-blue-800">Edit</a>
+                                <form action="{{ route('job_listings.destroy', $job->jobid) }}" method="POST" class="inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-red-500 hover:text-red-700 ml-2">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                
             </div>
             @endif
 

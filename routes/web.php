@@ -53,6 +53,7 @@ Route::middleware(['auth'])->group(function () {
 // Applicant Routes
 Route::middleware(['rolemanager:applicant'])->group(function () {
     Route::get('/applicant/home', [ApplicantController::class, 'index'])->name('applicant.home');
+    Route::get('/applicant/findjobs', [ApplicantController::class, 'findjobs'])->name('applicant.findjobs');
 
     // Job Listings (View Job Details)
     Route::get('/applicant/job_listings/{id}', [JobListingController::class, 'show'])
@@ -66,7 +67,8 @@ Route::middleware(['rolemanager:applicant'])->group(function () {
         Route::get('job_applications/{applications_id}', [JobApplicationController::class, 'show'])
     ->name('job_applications.show');
 // View application details
-Route::get('/job_applications/{applications_id}/edit', [JobApplicationController::class, 'edit'])->name('job_applications.edit');
+
+// Route::get('/job_applications/{applications_id}/edit', [JobApplicationController::class, 'edit'])->name('job_applications.edit');
 
     Route::delete('/job_applications/{id}', [JobApplicationController::class, 'destroy'])
         ->name('job_applications.destroy'); // Delete application
