@@ -54,14 +54,22 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['rolemanager:applicant'])->group(function () {
     Route::get('/applicant/home', [ApplicantController::class, 'index'])->name('applicant.home');
 
-    // Job Listings
-    Route::get('/jobs', [JobListingController::class, 'publicIndex'])->name('job_listings.index');
-    Route::get('/jobs/{id}', [JobListingController::class, 'publicShow'])->name('job_listings.show');
+    // Job Listings (View Job Details)
+    Route::get('/applicant/job_listings/{id}', [JobListingController::class, 'show'])
+        ->name('applicant.job_listings.show');
 
-   // Job Applications
-   Route::get('/job_applications', [JobApplicationController::class, 'index'])->name('job_applications.index'); // View all applications
-   Route::post('/jobs/{jobid}/apply', [JobApplicationController::class, 'store'])->name('job_applications.store'); // Apply for a job
-   Route::get('/job_applications/{id}', [JobApplicationController::class, 'show'])->name('job_applications.show'); // View a specific application
+    // Job Applications (Apply to Jobs)
+    Route::get('/job_applications', [JobApplicationController::class, 'index'])
+        ->name('job_applications.index'); // View applications
+    Route::post('/job_applications/store/{jobid}', [JobApplicationController::class, 'store'])
+        ->name('job_applications.store'); // Submit application
+        Route::get('job_applications/{applications_id}', [JobApplicationController::class, 'show'])
+    ->name('job_applications.show');
+// View application details
+Route::get('/job_applications/{applications_id}/edit', [JobApplicationController::class, 'edit'])->name('job_applications.edit');
+
+    Route::delete('/job_applications/{id}', [JobApplicationController::class, 'destroy'])
+        ->name('job_applications.destroy'); // Delete application
 });
 
 // Company Routes
@@ -69,15 +77,13 @@ Route::middleware(['rolemanager:company'])->group(function () {
     Route::get('/company/home', [CompanyController::class, 'index'])->name('company.home');
 
     // Job Listings
-    // Route::get('/job_listings', [JobListingController::class, 'index'])->name('job_listings.index');
-    
-    
-    Route::get('/jobs/create', [JobListingController::class, 'create'])->name('job_listings.create');
-    Route::post('/jobs', [JobListingController::class, 'store'])->name('job_listings.store');
-    Route::get('/jobs/{id}', [JobListingController::class, 'show'])->name('job_listings.show');
-    Route::get('/jobs/{id}/edit', [JobListingController::class, 'edit'])->name('job_listings.edit');
-    Route::put('/jobs/{id}', [JobListingController::class, 'update'])->name('job_listings.update');
-    Route::delete('/jobs/{id}', [JobListingController::class, 'destroy'])->name('job_listings.destroy');
+    Route::get('/job_listings', [JobListingController::class, 'index'])->name('job_listings.index');
+    Route::get('/job_listings/create', [JobListingController::class, 'create'])->name('job_listings.create');
+    Route::post('/job_listings', [JobListingController::class, 'store'])->name('job_listings.store');
+    Route::get('/job_listings/{id}', [JobListingController::class, 'show'])->name('job_listings.show');
+    Route::get('/job_listings/{id}/edit', [JobListingController::class, 'edit'])->name('job_listings.edit');
+    Route::put('/job_listings/{id}', [JobListingController::class, 'update'])->name('job_listings.update');
+    Route::delete('/job_listings/{id}', [JobListingController::class, 'destroy'])->name('job_listings.destroy');
     
     Route::get('/company/create', [CompanyController::class, 'create'])->name('company.create');
     Route::post('/company/store', [CompanyController::class, 'store'])->name('company.store');
@@ -87,6 +93,5 @@ Route::middleware(['rolemanager:company'])->group(function () {
 Route::fallback(function () {
     return view('errors.404');
 });
-
 
 require __DIR__.'/auth.php';

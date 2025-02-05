@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\JobListing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PHPUnit\Util\PHP\Job;
+// use App\Models\Job;
 
 class JobListingController extends Controller
 {
@@ -121,12 +123,19 @@ class JobListingController extends Controller
         return redirect()->route('job_listings.index')->with('success', 'Job listing deleted successfully!');
     }
     public function show($id)
-{
-    // Retrieve the job by id, with the company relationship
-    $job = JobListing::with('company')->findOrFail($id);
-    // $job = JobListing::findOrFail($id);
-    // Return the 'show' view with the job data
-    return view('job_listings.show', compact('job'));
-}
+    {
+        // Retrieve the job listing using the custom primary key.
+        $job = JobListing::findOrFail($id);
 
+        // Optionally, add logic to check if the job is active or if the application deadline is still open.
+ 
+        // Retrieve other jobs from the same company, excluding the current job.
+            $otherJobs = JobListing::where('company_id', $job->company_id)
+            ->where('jobid', '<>', $job->jobid)
+            ->get();
+            
+        // Return the view that displays the job details for an applicant.
+        // return view('applicant.job_details', compact('job'));
+        return view('applicant.job_details', compact('job', 'otherJobs'));
+    }
 }

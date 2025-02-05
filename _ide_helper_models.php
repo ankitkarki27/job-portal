@@ -90,6 +90,10 @@ namespace App\Models{
  * @property string $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Applicant $applicant
+ * @property-read mixed $resume
+ * @property-read \App\Models\TFactory|null $use_factory
+ * @property-read \App\Models\JobListing $job
  * @method static \Illuminate\Database\Eloquent\Builder<static>|JobApplication newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|JobApplication newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|JobApplication query()

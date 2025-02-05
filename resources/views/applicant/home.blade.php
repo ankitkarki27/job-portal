@@ -116,7 +116,13 @@
                                 <span class="text-gray-400 text-sm">/ year</span>
                             </div>
                            
-                            <a href="{{ route('job_listings.show', ['id' => $job->jobid]) }}" class="flex items-center px-4 py-2 bg-blue-50 text-blue-600 rounded-md hover:bg-blue-100 transition-colors">
+                            {{-- <a href="{{ route('job_listings.show', ['id' => $job->jobid]) }}" class="flex items-center px-4 py-2 bg-blue-50 text-blue-600 rounded-md hover:bg-blue-100 transition-colors">
+                                <span class="text-sm font-medium">View Details</span>
+                                <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
+                            </a>
+                             --}}
+
+                             <a href="{{ route('applicant.job_listings.show', ['id' => $job->jobid]) }}" class="flex items-center px-4 py-2 bg-blue-50 text-blue-600 rounded-md hover:bg-blue-100 transition-colors">
                                 <span class="text-sm font-medium">View Details</span>
                                 <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
                             </a>
@@ -127,13 +133,10 @@
             </div>
         </div>
     </div>
-
-
-{{-- update the tailwinf css design of this  Featured Jobs Section.design only the tailwind css,don't change the laravel code only change tailwind css part --}}
-    <!-- Features Section -->
+   <!-- Features Section -->
     <div class="bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">Why Choose JobConnect?</h2>
+            <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">Why Choose JobsNepal?</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Feature 1 -->
                 <div class="text-center p-6 bg-white rounded-lg border border-gray-100">

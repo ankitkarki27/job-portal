@@ -12,7 +12,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
         <!-- Logo -->
-        <a href="#" class="flex items-center">
+        <a href="{{ route('applicant.home') }}"c nlass="flex items-center">
           <!-- Use a comment if not using asset function -->
           <!-- <img src="/images/image.png" alt="Logo" class="h-10"> -->
           <img src="{{ asset('images/image.png') }}" alt="Logo" class="h-10">
@@ -39,7 +39,7 @@
                   <!-- Dropdown Menu -->
                   <div id="applicant-dropdown-menu" class="dropdown-menu hidden absolute right-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-lg py-2">
                     <a href="{{ route('profile.index') }}" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition-colors">View Profile</a>
-                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition-colors">My Applications</a>
+                    <a href="{{ route('job_applications.index') }}" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition-colors">My Applications</a>
                     <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition-colors">Saved Jobs</a>
                     <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition-colors">Settings</a>
                     <hr class="my-1 border-gray-200">
