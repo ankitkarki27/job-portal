@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construction Company</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script defer src="script.js"></script>
+</head>
+<body class="font-sans bg-gray-100">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-blue-800 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-white text-2xl font-bold">Construction Co.</h1>
+            <div class="space-x-4">
+                <a href="#" class="text-white hover:text-gray-300">Home</a>
+                <a href="#" class="text-white hover:text-gray-300">Services</a>
+                <a href="#" class="text-white hover:text-gray-300">About</a>
+                <a href="#" class="text-white hover:text-gray-300">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-cover bg-center h-screen" style="background-image: url('https://via.placeholder.com/1920x1080');">
+        <div class="bg-black bg-opacity-50 h-full flex items-center justify-center">
+            <div class="text-center text-white">
+                <h2 class="text-5xl font-bold mb-4">Building Your Future</h2>
+                <p class="text-xl mb-8">Quality construction services tailored to your needs.</p>
+                <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Get a Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-16">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-8">Our Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded shadow-lg">
+                    <h3 class="text-2xl font-semibold mb-4">Residential Construction</h3>
+                    <p class="text-gray-700">Building homes with precision and care.</p>
+                </div>
+                <div class="bg-white p-6 rounded shadow-lg">
+                    <h3 class="text-2xl font-semibold mb-4">Commercial Construction</h3>
+                    <p class="text-gray-700">Constructing spaces for business success.</p>
+                </div>
+                <div class="bg-white p-6 rounded shadow-lg">
+                    <h3 class="text-2xl font-semibold mb-4">Renovation Services</h3>
+                    <p class="text-gray-700">Transforming old spaces into new dreams.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-16 bg-gray-200">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-8">About Us</h2>
+            <p class="text-gray-700 max-w-2xl mx-auto">With years of experience, our team is dedicated to delivering high-quality construction services. We pride ourselves on our craftsmanship and attention to detail.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-16">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-8">Contact Us</h2>
+            <form id="contactForm" class="max-w-md mx-auto">
+                <div class="mb-4">
+                    <input type="text" id="name" name="name" placeholder="Your Name" required class="w-full p-2 border border-gray-300 rounded">
+                </div>
+                <div class="mb-4">
+                    <input type="email" id="email" name="email" placeholder="Your Email" required class="w-full p-2 border border-gray-300 rounded">
+                </div>
+                <div class="mb-4">
+                    <textarea id="message" name="message" placeholder="Your Message" required class="w-full p-2 border border-gray-300 rounded"></textarea>
+                </div>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-800 py-4">
+        <div class="container mx-auto text-center text-white">
+            <p>&copy; 2023 Construction Co. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
