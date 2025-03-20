@@ -2,7 +2,7 @@ use job_portal;
 show tables;
 
 select * from users ;
-select * from users where id='9';
+select * from users where id='2';
 select * from applicants;
 select * from companies;
 select * from job_listings;

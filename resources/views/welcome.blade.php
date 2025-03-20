@@ -12,12 +12,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Liter&family=Mako&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
         <style>
             body {
-             
+                
                 font-family: "Ubuntu", serif;
             }
        </style>
 </head>
-
 <body class="bg-white">
 
 @include('partials.welcome-navbar')
@@ -35,8 +34,8 @@
                         Join thousands of job seekers and top companies on the most reliable platform for opportunities.
                     </p>
                     
-                    <div class="mt-8 flex flex-wrap gap-4 justify-left md:justify-start">
-                        <a href="{{ route('login') }}" class="text-blue-500 hover:underline">Login</a>
+                    <div class="mt-12 flex flex-wrap gap-4 justify-left md:justify-start">
+                        {{-- <a href="{{ route('login') }}" class="text-blue-500 hover:underline">Login</a> --}}
                         <button class="bg-gray-900 hover:bg-gray-900 text-white font-semibold px-6 py-3 rounded-lg">
                            Find Jobs
                         </button>

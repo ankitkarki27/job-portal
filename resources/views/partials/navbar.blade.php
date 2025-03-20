@@ -12,7 +12,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
         <!-- Logo -->
-        <a href="{{ route('applicant.home') }}"c nlass="flex items-center">
+        <a href=""c nlass="flex items-center">
           <!-- Use a comment if not using asset function -->
           <!-- <img src="/images/image.png" alt="Logo" class="h-10"> -->
           <img src="{{ asset('images/image.png') }}" alt="Logo" class="h-10">

@@ -7,6 +7,7 @@
             
             <!-- Desktop Menu -->
             <div class="hidden md:flex items-center space-x-6">
+                {{-- <a href="#" class="text-gray-900 hover:text-blue-500 font-semibold">Home</a> --}}
                      <a href="{{ route('login') }}" class="text-gray-900 hover:text-blue-500 font-semibold">Login</a>
                     <a href="{{ route('register.applicant') }}" class="bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-900">Applicant</a>
                     <a href="{{ route('register.company') }}" class="bg-white text-black border border-black px-4 py-2 rounded-lg hover:bg-gray-300 hover:text-black">Company</a>
