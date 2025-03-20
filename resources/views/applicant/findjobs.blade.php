@@ -56,11 +56,11 @@
                     <div class="mb-6">
                         <h4 class="font-medium mb-3">Salary Range</h4>
                         <select class="w-full border border-gray-200 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-gray-200">
-                            <option>Any Salary</option>
+                            {{-- <option>Any Salary</option>
                             <option>$0 - $50k</option>
                             <option>$50k - $100k</option>
                             <option>$100k - $150k</option>
-                            <option>$150k+</option>
+                            <option>$150k+</option> --}}
                         </select>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
             <!-- Job Listings -->
             <div class="lg:col-span-3">
                 <!-- Popular Job Categories -->
-                <div class="mb-8">
+                {{-- <div class="mb-8">
                     <h3 class="text-lg font-semibold mb-4">Popular Job Categories</h3>
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                         <button class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow text-left">
@@ -88,7 +88,7 @@
                             <p class="text-sm text-gray-500">643 jobs</p>
                         </button>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Job Results -->
                 <div class="space-y-4">
